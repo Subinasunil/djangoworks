@@ -1,0 +1,8 @@
+[
+    {"id": 1, "username": "akhil", "email": "akhil@gmail.com", "password": "Password@123","followers":[2,3]},
+    {"id": 2, "username": "nikil", "email": "nikil@gmail.com", "password": "Password@123","followers":[1,3,4,6]},
+    {"id": 3, "username": "anu", "email": "akhil@gmail.com", "password": "Password@123","followers":[2,1,4]},
+    {"id": 4, "username": "vinu", "email": "vinu@gmail.com", "password": "Password@123","followers":[2,3,6]},
+    {"id": 5, "username": "jhon", "email": "dfg@gmail.com", "password": "Password@123","followers":[2,3,1,6]},
+    {"id": 6, "username": "richard", "email": "ghj@gmail.com", "password": "Password@123","followers":[2,3,5]}
+]

@@ -1,0 +1,15 @@
+.col{
+    width: 200px;
+    height: 350px;
+    border: 1px solid black;
+    float: left;
+}
+.col-1{
+    background-color: rgb(11, 156, 125);
+}
+.col-2{
+    background-color: rgb(221, 77, 161);
+}
+.col-3{
+    background-color: rgb(221, 189, 84);
+}

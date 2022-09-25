@@ -1,0 +1,65 @@
+.col{
+    width: 100px;
+    height: 120px;
+    border: 1px solid  rgb(107, 213, 128);
+    float: left;
+    margin: 20px auto;
+}
+.col-1{
+    background-color: rgb(234, 147, 147);
+    margin-right: 5px;
+    margin-left: 400px;
+}
+.col-2{
+    background-color: rgb(74, 184, 118);
+    margin-right: 5px;
+}
+.col-3{
+    background-color: rgb(194, 135, 93);
+    margin-right: 5px;
+}
+.col-4{
+    background-color: rgb(120, 128, 215);
+    margin-right: 5px;
+}
+.col-5{
+    background-color: rgb(170, 67, 157);
+    margin-right: 400px;
+}
+
+.colu{
+    width: 100px;
+    height: 120px;
+    border: 1px solid  teal;
+    float: left;
+    margin: 20px auto;
+}
+.col-6{
+    background-color: rgb(214, 84, 84);
+    margin-right: 5px;
+    margin-left: 305px;
+}
+.col-7{
+    background-color: rgb(55, 202, 50);
+    margin-right: 5px;
+}
+.col-8{
+    background-color: rgb(174, 98, 44);
+    margin-right: 5px;
+}
+.col-9{
+    background-color: rgb(159, 141, 51);
+    margin-right: 5px;
+}
+.col-10{
+    background-color: rgb(229, 78, 209);
+    margin-right: 5px;
+}
+.col-11{
+    background-color: rgb(180, 61, 86);
+    margin-right: 5px;
+}
+.col-12{
+    background-color: rgb(214, 100, 92);
+    margin-right: 5px;
+}

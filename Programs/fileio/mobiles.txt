@@ -1,0 +1,3 @@
+a52,sumsang,36000,5g,led
+a55,sumsang,37000,4g,led
+note11,redmi,150000,4g,lcd

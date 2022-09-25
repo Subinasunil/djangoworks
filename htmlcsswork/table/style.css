@@ -1,0 +1,16 @@
+td{
+    height: 150px;
+    width: 100px;
+}
+td:nth-child(1){
+    background-color: rgb(37, 199, 199);
+}
+td:nth-child(2){
+    background-color: rgb(88, 198, 161);
+}
+td:nth-child(3){
+    background-color: rgb(9, 79, 79);
+}
+td:nth-child(4){
+    background-color: rgb(6, 68, 46);
+}

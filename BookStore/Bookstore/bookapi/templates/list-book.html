@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+{%block body_block%}
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {%if messages%}
+            {%for m in messages%}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{m}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            {%endfor%}
+
+            {%endif%}
+        </div>
+        <div class="col-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            {%if books%}
+            <table class="table">
+                <tr>
+                    <th>Book Name</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Publisher</th>
+                    <th>Action</th>
+                </tr>
+                {%for book in books%}
+                <tr>
+                    <td>{{book.bookname}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.price}}</td>
+                    <td>{{book.qty}}</td>
+                    <td>{{book.publisher}}</td>
+                    <td>
+                        <a href="{%url 'edit-book' book.id %}" class="btn btn-outline-info">Edit</a>
+                        <a href="{%url 'book-detail' book.id %}" class="btn btn-outline-info">Detail</a>
+                        <a href="{%url 'remove-book' book.id %}" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>
+            {%else%}
+            <h2 class="text-danger">No Books</h2>
+            {%endif%}
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+ {%endblock%}

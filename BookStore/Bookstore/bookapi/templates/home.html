@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+{%block body_block%}
+<div class="container">
+
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {%if messages%}
+            {%for m in messages%}
+            {% if m.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{m}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {%endif%}
+            {%endfor%}
+            {%endif%}
+            <h1>Welcome {{request.user}}!!</h1>
+        </div>
+        <div class="col-4"></div>
+
+    </div>
+</div>
+{%endblock%}

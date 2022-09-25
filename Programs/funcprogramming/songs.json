@@ -1,0 +1,14 @@
+[
+  {"name": "song1","album": "album1","rating": 4,"mode":"travelling","add_to_favt":1000},
+    {"name": "song2","album": "album1","rating": 4,"mode":"raining","add_to_favt":1000},
+   {"name": "song3","album": "album2","rating": 5,"mode":"raining","add_to_favt":1000},
+    {"name": "song4","album": "album2","rating": 5,"mode":"birthday","add_to_favt":1000},
+   {"name": "song5","album": "album2","rating": 3,"mode":"birthday","add_to_favt":1000},
+    {"name": "song12","album": "album2","rating": 3,"mode":"night","add_to_favt":1000},
+   {"name": "song6","album": "album2","rating": 5,"mode":"night","add_to_favt":1000},
+    {"name": "song7","album": "album3","rating": 2,"mode":"night","add_to_favt":1000},
+   {"name": "song8","album": "album5","rating": 1,"mode":"sad","add_to_favt":1000},
+    {"name": "song9","album": "album5","rating": 4,"mode":"sad","add_to_favt":1000},
+   {"name": "song10","album": "album8","rating": 4,"mode":"sad","add_to_favt":1000},
+    {"name": "song11","album": "album9","rating": 4,"mode":"sad","add_to_favt":1000}
+]

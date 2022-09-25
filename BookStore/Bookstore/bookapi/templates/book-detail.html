@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+{%block body_block%}
+<div class="container">
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      {{book.bookname}}
+      {{book.author}}
+      {{book.price}}
+      {{book.qty}}
+      {{book.publisher}}
+    </div>
+    <div class="col-4"></div>
+  </div>
+
+    {%endblock%}
