@@ -16,11 +16,21 @@ class CategoryView(ModelViewSet):
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
-class ProductViewsetView(ModelViewSet):
+class ProductView(ModelViewSet):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
+    # def list(self, request, *args, **kwargs):
+    #     id=Categories.objects.get("id")
+    #     qs=Product.objects.filter(id=id)
+    #     serializer=ProductSerializer(qs,many=True)
+    #     return Response(data=serializer.data)
+
+    def get_queryset(self):
+        c_id=Categories.objects.get("pk")
+        return Product.objects.filter(id=c_id)
+
 
 class UserModelView(ModelViewSet):
     serializer_class = UserSeializer

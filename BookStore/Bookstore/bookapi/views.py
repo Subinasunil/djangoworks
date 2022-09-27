@@ -1,14 +1,12 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
 from django.views.generic import View,CreateView,TemplateView,ListView,DetailView,UpdateView
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from bookapi import forms
 from bookapi.models import Books
 from django.contrib import messages
-from bookapi.decorators import signin_required
+from bookapi.decorators import signin_required,sign_as_user
 from django.utils.decorators import method_decorator
-
 
 
 # Create your views here.
@@ -75,6 +73,7 @@ class BookAddView(CreateView):
 
 
 @method_decorator(signin_required,name="dispatch")
+@method_decorator(sign_as_user,name="dispatch")
 class BookListView(ListView):
     model = Books
     template_name = "list-book.html"
@@ -82,9 +81,16 @@ class BookListView(ListView):
     def get_queryset(self):
         return Books.objects.all()
 
-
+@method_decorator(signin_required,name="dispatch")
+class UserBookListView(ListView):
+    model = Books
+    template_name = "userbook-list.html"
+    context_object_name = "books"
+    def get_queryset(self):
+        return Books.objects.all()
 
 @signin_required
+@sign_as_user
 def delete_book(request,*args,**kwargs):
     id=kwargs.get("id")
     Books.objects.get(id=id).delete()
@@ -92,6 +98,7 @@ def delete_book(request,*args,**kwargs):
     return redirect("listbook")
 
 @method_decorator(signin_required,name="dispatch")
+@method_decorator(sign_as_user,name="dispatch")
 class TodoDetailView(DetailView):
     model = Books
     template_name = "book-detail.html"
@@ -99,6 +106,7 @@ class TodoDetailView(DetailView):
     pk_url_kwarg = "id"
 
 @method_decorator(signin_required,name="dispatch")
+@method_decorator(sign_as_user,name="dispatch")
 class BookEditView(UpdateView):
     model = Books
     form_class = forms.BookEditForm

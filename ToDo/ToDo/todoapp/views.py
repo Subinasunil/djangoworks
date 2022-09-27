@@ -2,7 +2,6 @@ from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
 from django.views.generic import View,TemplateView,ListView,DetailView,CreateView,UpdateView
 from todoapp import forms
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from todoapp.models import Todos
 from django.contrib import messages

@@ -9,6 +9,7 @@ urlpatterns = [
     path("signout", views.SignOutView.as_view(), name="signout"),
     path("book/add", views.BookAddView.as_view(), name="addbook"),
     path("book/all", views.BookListView.as_view(), name="listbook"),
+    path("userbook/all", views.UserBookListView.as_view(), name="userbooklist"),
     path("book/remove/<int:id>", views.delete_book, name="remove-book"),
     path("book/details/<int:id>", views.TodoDetailView.as_view(), name="book-detail"),
     path("book/change/<int:id>", views.BookEditView.as_view(), name="edit-book")

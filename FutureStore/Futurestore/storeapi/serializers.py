@@ -19,6 +19,8 @@ class ProductSerializer(ModelSerializer):
                 "price",
                 "description"
         ]
+    def create(self, validated_data):
+       return Product.objects.create(**validated_data)
 class UserSeializer(ModelSerializer):
     class Meta:
         model=User
