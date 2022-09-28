@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import View,CreateView,TemplateView,ListView,DetailView,UpdateView,FormView
 from django.contrib.auth import authenticate,login,logout
 from customer import forms
-from owner.models import Product,Categories
+from owner.models import Product,Categories,Carts
 from django.contrib import messages
 
 # Create your views here.
@@ -40,8 +40,47 @@ class HomeView(TemplateView):
         all_products=Product.objects.all()
         context["products"]=all_products
         return context
+class LogoutView(View):
+    def get(self,request,*args,**kwargs):
+        logout(request)
+        return redirect("login")
 class ProductDetailView(DetailView):
     model = Product
     template_name = "product-detail.html"
     context_object_name = "product"
     pk_url_kwarg = "id"
+
+class Addcart(FormView):
+    template_name = "add-cart.html"
+    form_class = forms.AddCartForm
+    def get(self,request,*args,**kwargs):
+        id=kwargs.get("id")
+        product=Product.objects.get(id=id)
+        return render(request,self.template_name,{"form":forms.AddCartForm(),"product":product})
+    def post(self,request,*args,**kwargs):
+        id = kwargs.get("id")
+        product = Product.objects.get(id=id)
+        qty=request.POST.get("qty")
+        user=request.user
+        Carts.objects.create(Product_name=product,
+                             user=user,
+                             qty=qty)
+        return redirect("home")
+
+class MycartView(ListView):
+    model=Carts
+    template_name = "cart-list.html"
+    context_object_name = "carts"
+
+    def get_queryset(self):
+        return Carts.objects.filter(user=self.request.user)
+
+class CartRemoveView(ListView):
+    model = Carts
+    template_name = "cart-remove.html"
+    context_object_name = "carts"
+
+    def get_queryset(self):
+        # id=self.kwargs.get("pk")
+        # Carts.objects.get(id=id).delete()
+        return Carts.objects.filter(user=self.request.user).exclude(status="cancelled")

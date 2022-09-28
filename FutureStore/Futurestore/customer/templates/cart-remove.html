@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="container-fluid">
+    <div class="row">
+        {%for cart in carts%}
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div class="card h-100">
+                <!-- Product image-->
+                <img class="card-img-top" src="{{cart.product.image.url}}" height="100%" width="100%" alt="..."/>
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                        <h5 class="fw-bolder">{{cart.product.product_name}}</h5>
+                        <!-- Product price-->
+                        Rs.{{cart.product.price}}/-
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            qty:{{cart.qty}}
+            status:{{cart.status}}
+        </div>
+
+        {%endfor%}
+
+    </div>
+</div>
+{%endblock%}
+

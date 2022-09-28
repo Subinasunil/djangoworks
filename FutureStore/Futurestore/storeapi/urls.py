@@ -5,8 +5,9 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 router=DefaultRouter()
 router.register("category",CategoryView,basename="category")
-router.register("category/<int:pk>/product",ProductView,basename="product")
 router.register("accounts/signup",UserModelView,basename="users")
+router.register("product",ProductView,basename="product")
+router.register("cart",CategoryView,basename="cart")
 
 urlpatterns=[
     path('token',obtain_auth_token),

@@ -1,9 +1,11 @@
 {%extends 'base.html'%}
 {%block body_block%}
+
+
 <div class="container">
     <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
+        <div class="col-2"></div>
+        <div class="col-6">
             <div class="card h-100">
                 <!-- Product image-->
                 <img class="card-img-top" src="{{product.image.url}}" height="100%" width="100%" alt="..."/>
@@ -20,12 +22,22 @@
                 </div>
                 <!-- Product actions-->
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{%url 'add-cart' product.id%}">Addtocart</a></div>
 
                 </div>
             </div>
+
+
+
+
+
         </div>
-        <div class="col-4"></div>
+        <div class="col-4">
+             <form action="" method="post">
+                {%csrf_token%}
+                {{form.as_p}}
+                <button type="submit">Add</button>
+                </form>
+        </div>
     </div>
 </div>
 {%endblock%}
