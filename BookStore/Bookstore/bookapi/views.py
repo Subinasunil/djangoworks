@@ -31,7 +31,7 @@ class LoginView(View):
             uname=form.cleaned_data.get("username")
             pwd=form.cleaned_data.get("password")
             user=authenticate(request,username=uname,password=pwd)
-            if request.user.is_superuser:
+            if user.is_superuser:
                 login(request, user)
                 messages.success(request, "Login Success")
                 print("login success")
