@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import View,CreateView,TemplateView,ListView,DetailView,UpdateView,FormView
 from django.contrib.auth import authenticate,login,logout
 from customer import forms
-from owner.models import Product,Categories,Carts
+from owner.models import Product,Categories,Carts,Order
 from django.contrib import messages
 
 # Create your views here.
@@ -28,8 +28,11 @@ class LoginView(FormView):
             user=authenticate(request,username=username,password=password)
             if user:
                 login(request,user)
-                messages.success(request, "Login Success")
-                return redirect("home")
+                if request.user.is_superuser:
+                    return redirect("dashboard")
+                    messages.success(request, "Login Success")
+                else:
+                    return redirect("home")
         else:
             messages.error(request, "invalid Username/password")
             return render(request, "login.html", {"form": form})
@@ -62,7 +65,7 @@ class Addcart(FormView):
         product = Product.objects.get(id=id)
         qty=request.POST.get("qty")
         user=request.user
-        Carts.objects.create(Product_name=product,
+        Carts.objects.create(product=product,
                              user=user,
                              qty=qty)
         return redirect("home")
@@ -73,14 +76,45 @@ class MycartView(ListView):
     context_object_name = "carts"
 
     def get_queryset(self):
-        return Carts.objects.filter(user=self.request.user)
+        return Carts.objects.filter(user=self.request.user).exclude(status="cancelled").order_by("-created_date")
 
 class CartRemoveView(ListView):
     model = Carts
     template_name = "cart-remove.html"
-    context_object_name = "carts"
+    # context_object_name = "carts"
 
-    def get_queryset(self):
-        # id=self.kwargs.get("pk")
-        # Carts.objects.get(id=id).delete()
-        return Carts.objects.filter(user=self.request.user).exclude(status="cancelled")
+    # def get_queryset(self):
+    #     # id=self.kwargs.get("pk")
+    #     # Carts.objects.get(id=id).delete()
+    #     return Carts.objects.filter(user=self.request.user).exclude(status="cancelled")
+    def post(self,request,*args,**kwargs):
+        cart_id = kwargs.get("cid")
+        product_id = kwargs.get("pid")
+        cart = Carts.objects.get(id=cart_id)
+        product = Product.objects.get(id=product_id)
+        cart.delete()
+        cart.status="cancelled"
+        return redirect("home")
+
+
+
+class PlaceOrderView(FormView):
+    template_name = "place-order.html"
+    form_class = forms.OrderForm
+
+    def post(self, request, *args, **kwargs):
+        cart_id=kwargs.get("cid")
+        product_id=kwargs.get("pid")
+        cart=Carts.objects.get(id=cart_id)
+        product=Product.objects.get(id=product_id)
+        user=request.user
+        delivery_address=request.POST.get("delivery_address")
+        Order.objects.create(product=product,
+                             user=user,
+                             delivery_address=delivery_address)
+        cart.status="order-placed"
+        cart.save()
+        return redirect("home")
+
+
+
